@@ -1,0 +1,56 @@
+@import 'vars';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $backColor;
+  height: 100vh;
+  color: $textColor;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+
+  @media(max-width: $middleScreen) {
+    max-width: 960px;
+  }
+
+  @media(max-width: $tableScreen) {
+    padding: 0 20px;
+    max-width: none;
+  }
+
+  @media(max-width:$phoneScreen) {
+    padding: 0 10px;
+  }
+}
+
+.fade-enter {
+	opacity: 0;
+}
+
+.fade-enter-active {
+	opacity: 1;
+	transition: opacity 1500ms;
+}
+
+.fade-exit {
+	opacity: 1;
+}
+
+.fade-exit-active {
+	opacity: 0;
+	transition: opacity 500ms;
+}

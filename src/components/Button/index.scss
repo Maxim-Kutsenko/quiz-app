@@ -1,0 +1,29 @@
+@import '../../scss/vars.scss';
+
+button {
+    border: 0;
+    background-color: #1149a7;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 90%;
+    min-height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 auto;
+    box-shadow: 2px 1px 10px #3e3333;;
+    margin-bottom: 20px;
+    &:hover {
+        color:#000
+    }
+    
+
+    @media(max-width:$phoneMiddleScreen) {
+
+        min-height: 40px;
+        font-size: 16px;
+    }
+}
