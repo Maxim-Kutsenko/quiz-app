@@ -5,7 +5,7 @@
 }
 
 .title {
-    font-size: 45px;
+    font-size: 40px;
     font-weight: 700;
     text-align: center;
     margin-bottom: 20px;
@@ -22,3 +22,23 @@
 .active {
     color: #000;
 }
+.quiz-status {
+    font-size: 20px;
+}
+.fade-enter {
+    opacity: 0.01;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+  }

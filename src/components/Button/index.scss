@@ -8,7 +8,7 @@ button {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    width: 90%;
+    width: 80%;
     min-height: 50px;
     cursor: pointer;
     font-size: 20px;
@@ -16,10 +16,13 @@ button {
     margin: 0 auto;
     box-shadow: 2px 1px 10px #3e3333;;
     margin-bottom: 20px;
+    transition: color 0.5s;
     &:hover {
         color:#000
     }
-    
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {color:#000; }
+      }    
 
     @media(max-width:$phoneMiddleScreen) {
 

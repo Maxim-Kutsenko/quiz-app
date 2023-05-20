@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  loading: false,
   quizList: [],
   quizStarted: false,
   count: 0,
@@ -16,14 +17,21 @@ export const mainSlice = createSlice({
   name: 'mainSlice',
   initialState,
   reducers: {
-    setQuizList: (state, action) => {
-      state.quizList = action.payload
+    startLoading:(state)=>{
+      state.loading = true
+    },
+    finishLoading: (state, action) => {
+      state.loading = false
+      state.quizList = action.payload.sort(() => Math.random() - 0.5).slice(15)
     },
     startQuiz: (state) => {
       state.quizStarted = true
     },
     incrementCount: (state) => {
       state.count = state.count + 1
+    },
+    decrementCount: (state) => {
+      state.count = state.count - 1
     },
     toggleQuiz: (state) => {
       state.isQuizShow = !state.isQuizShow
@@ -40,12 +48,14 @@ export const mainSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { 
-  setQuizList,
+  finishLoading,
   startQuiz,
   incrementCount,
   toggleQuiz,
   correctAnswer,
-  wrongAnswer
+  wrongAnswer,
+  startLoading,
+  decrementCount
 } = mainSlice.actions
 
 export default mainSlice.reducer

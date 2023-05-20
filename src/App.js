@@ -1,9 +1,8 @@
 import Loader from './components/Loader/Loader';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import QuizScreen from './components/QuizScreen/QuizScreen';
 import { useSelector, useDispatch } from 'react-redux'
-import { setQuizList} from './redux/mainSlice'
-import { CSSTransition } from "react-transition-group";
+import { startLoading, finishLoading } from './redux/mainSlice'
 import './scss/reset.scss';
 import './scss/index.scss';
 
@@ -12,12 +11,12 @@ export function sleep(time) {
 }
 
 function App() {
-  const [loading, setLoading] = useState(false)
-  const quizList = useSelector((state) => state.mainSlice.quizList)
+  const loading = useSelector((state) => state.mainSlice.loading)
+
   const dispatch = useDispatch()
-  
+
   async function fetchData() {
-    setLoading(true)
+    dispatch(startLoading())
     try {
       const response = await fetch('./data.json', {
         headers:
@@ -28,10 +27,8 @@ function App() {
       })
       const data = await response.json()
       sleep(1500).then(() => {
-        setLoading(false)
-        dispatch(setQuizList(data.questions))
+        dispatch(finishLoading(data.questions))
       })
-      console.log(quizList);
     } catch (e) {
       console.log(e);
     }
@@ -44,9 +41,10 @@ function App() {
     <>
       <div className='container'>
         {loading ?
-            <Loader />
+          <Loader />
           :
-          <QuizScreen />}
+          <QuizScreen />
+        }
       </div>
     </>
   );
