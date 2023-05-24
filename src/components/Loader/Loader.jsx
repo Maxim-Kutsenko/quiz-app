@@ -1,5 +1,5 @@
 import React from 'react'
-import './loader.scss'
+import '../../scss/index.scss'
 const Loader = ({text, textRequired}) => (
 
     <div className='loader-wrapper'>

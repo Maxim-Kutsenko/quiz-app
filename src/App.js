@@ -1,9 +1,10 @@
 import Loader from './components/Loader/Loader';
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import QuizScreen from './components/QuizScreen/QuizScreen';
 import { useSelector, useDispatch } from 'react-redux'
 import { startLoading, finishLoading } from './redux/mainSlice'
-import './scss/reset.scss';
+import {CSSTransition,SwitchTransition } from 'react-transition-group'
+
 import './scss/index.scss';
 
 export function sleep(time) {
@@ -26,7 +27,7 @@ function App() {
         }
       })
       const data = await response.json()
-      sleep(1500).then(() => {
+      sleep(1000).then(() => {
         dispatch(finishLoading(data.questions))
       })
     } catch (e) {
@@ -38,15 +39,25 @@ function App() {
   }, [])
 
   return (
-    <>
-      <div className='container'>
-        {loading ?
-          <Loader />
-          :
-          <QuizScreen />
-        }
-      </div>
-    </>
+
+      <SwitchTransition>
+        <CSSTransition
+          key={new Date()}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <div className='container'>
+            {loading ?
+              <Loader />
+              :
+              <QuizScreen />
+            }
+          </div>
+        </CSSTransition>
+      </SwitchTransition>
+
+
   );
 }
 
