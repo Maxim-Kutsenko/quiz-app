@@ -36,10 +36,10 @@ export const QuizContainer = () => {
         dispatch(decrementCount())
 
     }
-    function analyticHandler(event, id) {
+    function analyticHandler(id) {
         setActiveButtonId(id)
         let correctId = quizList[count].correctIndex
-        let currentId = +event.target.dataset.id
+        let currentId = id
         let isCorrect = correctId === currentId
         dispatch(setAnalytic(isCorrect))
     }
@@ -92,7 +92,7 @@ export const QuizContainer = () => {
                                     id={index}
                                     text={item}
                                     key={index}
-                                    onClick={(event) => analyticHandler(event, index)}
+                                    onClick={() => analyticHandler( index)}
                                 />
                             )}
                             <div className="arrow-wrap">

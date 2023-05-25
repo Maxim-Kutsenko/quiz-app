@@ -1,11 +1,11 @@
 import React from 'react'
 import '../../scss/index.scss'
-const Button = ({ onClick, backColor, text, id, disabled,className }) => {
+const Button = ({ onClick, backColor, text,  disabled,className }) => {
   return (
     <button
       className={className}
       onClick={onClick}
-      data-id={id}
+
       style={{backgroundColor:backColor}}
       disabled={disabled}
     >
