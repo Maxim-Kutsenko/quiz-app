@@ -4,8 +4,11 @@ import '../../scss/index.scss'
 export const QuizButton = ({ text, id, className, onClick, checked }) => {
     return (
         <div className={className} onClick={onClick}>
+
             <input type="radio" name="radio" id="radio" value={text} data-id={id} checked={checked} />
-            <label htmlFor="radio">{text}</label>
+            <label htmlFor="radio">
+            <span className='radio-index'>{id+1}.</span>
+                {text}</label>
         </div>
     )
 }

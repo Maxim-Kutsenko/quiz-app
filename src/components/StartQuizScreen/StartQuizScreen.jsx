@@ -14,6 +14,7 @@ export const StartQuizScreen = () => {
     let currentId = +event.target.dataset.id
     dispatch(setQuizAmount(currentId))
   }
+
   return (
 
     <div>

@@ -13,7 +13,6 @@ export const QuizContainer = () => {
     const analytic = useSelector((state) => state.mainSlice.analytic)
 
     const [loading, setLoading] = useState(false)
-    const [activeButtonId, setActiveButtonId] = useState(null);
 
     const dispatch = useDispatch()
 
@@ -29,19 +28,24 @@ export const QuizContainer = () => {
     }, [count, quizList.length]);
 
     function nextClickHandler() {
+        if (count === quizList.length - 1) {
+            if (!window.confirm('Завершити тест?')) {
+                return false
+            }
+        }
         dispatch(incrementCount())
-        setActiveButtonId(null)
     }
     function prevClickHandler() {
         dispatch(decrementCount())
-
     }
     function analyticHandler(event, id) {
-        setActiveButtonId(id)
         let correctId = quizList[count].correctIndex
         let currentId = +event.target.dataset.id
         let isCorrect = correctId === currentId
-        dispatch(setAnalytic(isCorrect))
+        dispatch(setAnalytic({
+            correct: isCorrect,
+            activeId: currentId
+        }))
     }
 
     function finishQuiz() {
@@ -88,11 +92,12 @@ export const QuizContainer = () => {
                         <div className="button-wrap">
                             {quizList[count]?.answers.map((item, index) =>
                                 <Button
-                                    className={`btn ${activeButtonId === index ? 'active' : ''}`}
+                                    className={`btn ${quizList[count].activeId === index ? 'active' : ''}`}
                                     id={index}
                                     text={item}
                                     key={index}
                                     onClick={(event) => analyticHandler(event, index)}
+                                    quizNumber={true}
                                 />
                             )}
                             <div className="arrow-wrap">
@@ -112,7 +117,7 @@ export const QuizContainer = () => {
                                 <Button text={count + 1 !== quizList.length ? 'Далі >' : 'Завершити'}
                                     className={'btn btn--nav'}
                                     onClick={nextClickHandler}
-                                    disabled={activeButtonId === null}
+                                    disabled={quizList[count].activeId === undefined}
                                 />
                             </div>
                         </div>

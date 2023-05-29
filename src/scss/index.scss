@@ -2,6 +2,7 @@
 @import 'vars';
 @import 'reset';
 @import 'transition';
+
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -9,7 +10,10 @@ body {
   height: 100vh;
   color: $textColor;
 }
-
+.finish-screen {
+  height: auto;
+  padding: 100px 0;
+}
 #root {
   display: flex;
   justify-content: center;
@@ -62,6 +66,10 @@ body {
     background-color: #4a4747;
   }
 
+  .btn--disabled {
+    cursor: not-allowed;
+    background-color: #4a4747;
+  }
 
 
   @media(max-width:$phoneMiddleScreen) {
@@ -76,15 +84,18 @@ body {
   display: inline-flex;
   margin-right: 10px;
 }
+
 .btn--center {
-  margin: 0 auto;
+  margin-inline: auto;
 }
+
 .btn--nav {
   width: 120px;
   background-color: #fff;
   color: #000;
   transform: scale(1);
   margin: 0;
+
   @media(max-width:$phoneMiddleScreen) {
     width: 80px;
     font-size: 12px;
@@ -172,21 +183,24 @@ body {
 
 .active {
   color: #000;
+  background: #fff;
 }
 
 .quiz-status {
   font-size: 20px;
 }
+
 .button-wrap {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .arrow-wrap {
   display: flex;
   justify-content: space-around;
-  align-items:center;
+  align-items: center;
   display: flex;
   width: 80%;
   margin: 0 auto;
@@ -205,6 +219,29 @@ body {
   opacity: 0.011;
   z-index: 100;
 }
-.btn input[type="radio"]:checked + label {
+
+.btn input[type="radio"]:checked+label {
   color: #000;
+}
+
+.quiz-number {
+  position: absolute;
+  left: 10px;
+}
+
+.answers-wrap {
+  text-align: initial;
+  margin: 0 auto;
+  width: 80%;
+  font-size: 20px;
+}
+
+.answers {
+  margin-bottom: 10px;
+  border: 2px solid;
+  padding: 10px;
+
+  div {
+    margin-bottom: 5px;
+  }
 }

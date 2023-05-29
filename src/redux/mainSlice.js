@@ -34,7 +34,12 @@ export const mainSlice = createSlice({
       state.count = state.count - 1
     },
     setAnalytic: (state, action) => {
-      state.analytic[state.count].correct = action.payload
+      const { correct, activeId } = action.payload;
+      state.analytic[state.count].correct = correct
+      state.quizList[state.count].activeId = activeId
+    },
+    setActiveId: (state, action) => {
+      state.analytic[state.count].activeId = action.payload
     },
     setQuizAmount: (state, action) => {
       state.quizAmount = action.payload
@@ -68,7 +73,8 @@ export const {
   decrementCount,
   setQuizAmount,
   setAnalytic,
-  setAnswersCount
+  setAnswersCount,
+  
 } = mainSlice.actions
 
 export default mainSlice.reducer

@@ -5,15 +5,52 @@ import '../../scss/index.scss'
 
 export const FinishScreen = () => {
   const answersCount = useSelector((state) => state.mainSlice.answersCount)
-  
+  const quizList = useSelector((state) => state.mainSlice.quizList)
+  const [showAnswers, setShowAnswers] = React.useState(false)
+
+  function showAnswersHandler() {
+    setShowAnswers(true)
+    document.body.classList.add('finish-screen')
+  }
   return (
     <div>
-      <h1 className='title'>Вітаємо, тест закінчено!</h1>
-      <div>
-        <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
-        <div className='analytic'>Не правильних відповідей: <span style={{ color: 'red' }}>{answersCount.wrong}</span></div>
-      </div>
-      <Button className={'btn btn--center'} text={'Повторити'} onClick={() => window.location.reload()} />
+
+      {!showAnswers ?
+        <>
+          <h1 className='title'>Вітаємо, тест закінчено!</h1>
+          <div>
+            <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
+            <div className='analytic'>Не правильних відповідей: <span style={{ color: 'red' }}>{answersCount.wrong}</span></div>
+          </div>
+          <Button className={'btn btn--center'} text={'Показати відповіді'} onClick={showAnswersHandler} />
+          <Button className={'btn btn--center'} text={'Почати заново'} onClick={() => window.location.reload()} />
+        </>
+        :
+        <>
+          <div className='answers-wrap'>
+            {quizList.map((item, index) => {
+              let isCorrect = item.correctIndex === item.activeId
+              return (
+                <div className='answers' key={index}
+                  style={{
+                    borderColor: isCorrect ? '#1149a7' : 'red'
+                  }}
+                >
+                  <div>{index + 1}. {item.question}</div>
+                  <div>Ви відповіли: <span>
+                    {item.answers[item.activeId]}
+                  </span> - <span style={{color:isCorrect ? '#1149a7' : 'red'}}>{isCorrect ? 'вірно' : 'не вірно'}</span> 
+                  </div>
+                  {!isCorrect && <div >Правильна відповідь: <span>{item.answers[item.correctIndex]}</span></div>}
+                </div>
+              )
+            })}
+          </div>
+          <Button className={'btn btn--center'} text={'Почати заново'} onClick={() => window.location.reload()} />
+        </>
+      }
+
+
     </div>
   )
 }
