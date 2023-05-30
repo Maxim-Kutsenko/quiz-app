@@ -37,6 +37,7 @@ export const QuizContainer = () => {
     }
     function prevClickHandler() {
         dispatch(decrementCount())
+
     }
     function analyticHandler(event, id) {
         let correctId = quizList[count].correctIndex

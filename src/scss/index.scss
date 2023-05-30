@@ -10,10 +10,12 @@ body {
   height: 100vh;
   color: $textColor;
 }
+
 .finish-screen {
   height: auto;
-  padding: 100px 0;
+  padding: 50px 0;
 }
+
 #root {
   display: flex;
   justify-content: center;
@@ -51,7 +53,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 80%;
   min-height: 50px;
   cursor: pointer;
@@ -73,8 +75,7 @@ body {
 
 
   @media(max-width:$phoneMiddleScreen) {
-
-    min-height: 40px;
+    width: 100%;
     font-size: 16px;
   }
 }
@@ -83,6 +84,17 @@ body {
   width: 50px;
   display: inline-flex;
   margin-right: 10px;
+}
+.btn--select {
+  text-align: center;
+  margin: 0;
+}
+.title-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .btn--center {
@@ -206,6 +218,10 @@ body {
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
+
+  @media(max-width:$phoneMiddleScreen) {
+    width: 100%;
+  }
 }
 
 .btn input[type="radio"] {
@@ -234,14 +250,25 @@ body {
   margin: 0 auto;
   width: 80%;
   font-size: 20px;
+
+  @media(max-width:$phoneMiddleScreen) {
+    width: 100%;
+  }
 }
 
 .answers {
   margin-bottom: 10px;
-  border: 2px solid;
+  border: 1px solid;
   padding: 10px;
-
+  border-radius: 10px;
+  
   div {
     margin-bottom: 5px;
   }
 }
+.answers--correct {
+  border-color: #1149a7;
+}
+.answers--wrong {
+  border-color: #ff0000;
+} 

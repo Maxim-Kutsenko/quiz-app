@@ -17,13 +17,13 @@ export const FinishScreen = () => {
 
       {!showAnswers ?
         <>
-          <h1 className='title'>Вітаємо, тест закінчено!</h1>
+          <h1 className='title'>Тест закінчено!</h1>
           <div>
             <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
-            <div className='analytic'>Не правильних відповідей: <span style={{ color: 'red' }}>{answersCount.wrong}</span></div>
+            <div className='analytic'>Не правильних відповідей: <span style={{ color: '#ff0000' }}>{answersCount.wrong}</span></div>
           </div>
           <Button className={'btn btn--center'} text={'Показати відповіді'} onClick={showAnswersHandler} />
-          <Button className={'btn btn--center'} text={'Почати заново'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
         </>
         :
         <>
@@ -31,22 +31,18 @@ export const FinishScreen = () => {
             {quizList.map((item, index) => {
               let isCorrect = item.correctIndex === item.activeId
               return (
-                <div className='answers' key={index}
-                  style={{
-                    borderColor: isCorrect ? '#1149a7' : 'red'
-                  }}
-                >
+                <div className={`answers ${isCorrect ? 'answers--correct': 'answers--wrong'}`} key={index}>
                   <div>{index + 1}. {item.question}</div>
                   <div>Ви відповіли: <span>
                     {item.answers[item.activeId]}
-                  </span> - <span style={{color:isCorrect ? '#1149a7' : 'red'}}>{isCorrect ? 'вірно' : 'не вірно'}</span> 
+                  </span> - <span style={{color:isCorrect ? '#1149a7' : '#ff0000'}}>{isCorrect ? 'вірно' : 'не вірно'}</span> 
                   </div>
                   {!isCorrect && <div >Правильна відповідь: <span>{item.answers[item.correctIndex]}</span></div>}
                 </div>
               )
             })}
           </div>
-          <Button className={'btn btn--center'} text={'Почати заново'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
         </>
       }
 

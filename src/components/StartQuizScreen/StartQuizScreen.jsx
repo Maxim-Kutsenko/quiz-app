@@ -7,37 +7,26 @@ import '../../scss/index.scss'
 export const StartQuizScreen = () => {
   const dispatch = useDispatch()
   const readyToStart = useSelector((state) => state.mainSlice.readyToStart)
-  const [activeButtonId, setActiveButtonId] = React.useState(null);
 
-  function clickHandler(event, id) {
-    setActiveButtonId(id);
-    let currentId = +event.target.dataset.id
-    dispatch(setQuizAmount(currentId))
+  function changeHandlet(event) {
+    dispatch(setQuizAmount(+event.target.value))
   }
-
   return (
 
     <div>
       <h1 className='title'>Готові розпочати тест?</h1>
-      <h2 style={{ marginBottom: 20, fontSize: 25 }}>Оберіть кількість питань</h2>
-      <div className="small-btn-wrap">
-        <Button className={`btn btn--small ${activeButtonId === 5 ? 'active' : ''}`}
-          text={5}
-          id={5}
-          onClick={(event) => clickHandler(event, 5)}
-        />
-        <Button className={`btn btn--small ${activeButtonId === 10 ? 'active' : ''}`}
-          text={10}
-          id={10}
-          onClick={(event) => clickHandler(event, 10)} />
-        <Button className={`btn btn--small ${activeButtonId === 15 ? 'active' : ''}`}
-          text={15}
-          id={15}
-          onClick={(event) => clickHandler(event, 15)} />
-        <Button className={`btn btn--small ${activeButtonId === 20 ? 'active' : ''}`}
-          text={20}
-          id={20}
-          onClick={(event) => clickHandler(event, 20)} />
+      <div className='title-wrap'>
+        <select name="select"
+          className='btn btn--select'
+          onChange={changeHandlet}
+          defaultValue={'Оберіть кількість питань'}
+        >
+          <option value="Оберіть кількість питань" disabled >Оберіть кількість питань</option>
+          <option value="5" >5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
       </div>
       <Button
         className={'btn btn--center'}
