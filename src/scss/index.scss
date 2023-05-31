@@ -34,7 +34,7 @@ body {
     max-width: 960px;
   }
 
-  @media(max-width: $tableScreen) {
+  @media(max-width: $phoneMiddleScreen) {
     padding: 0 20px;
     max-width: none;
   }
@@ -54,8 +54,8 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  width: 80%;
-  min-height: 50px;
+  width: 50%;
+  min-height: 60px;
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
@@ -73,10 +73,13 @@ body {
     background-color: #4a4747;
   }
 
-
+  @media(max-width:$tableScreen){
+    width: 80%;
+  }
   @media(max-width:$phoneMiddleScreen) {
     width: 100%;
     font-size: 16px;
+    min-height: 50px
   }
 }
 
@@ -88,6 +91,7 @@ body {
 .btn--select {
   text-align: center;
   margin: 0;
+  height: 50px;
 }
 .title-wrap {
   display: flex;
@@ -214,11 +218,13 @@ body {
   justify-content: space-around;
   align-items: center;
   display: flex;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-
+  @media(max-width:$tableScreen){
+    width: 80%;
+  }
   @media(max-width:$phoneMiddleScreen) {
     width: 100%;
   }
@@ -249,7 +255,7 @@ body {
   text-align: initial;
   margin: 0 auto;
   width: 80%;
-  font-size: 20px;
+  font-size: 16px;
 
   @media(max-width:$phoneMiddleScreen) {
     width: 100%;
@@ -261,6 +267,7 @@ body {
   border: 1px solid;
   padding: 10px;
   border-radius: 10px;
+
   
   div {
     margin-bottom: 5px;

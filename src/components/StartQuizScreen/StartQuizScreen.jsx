@@ -8,7 +8,7 @@ export const StartQuizScreen = () => {
   const dispatch = useDispatch()
   const readyToStart = useSelector((state) => state.mainSlice.readyToStart)
 
-  function changeHandlet(event) {
+  function changeHandler(event) {
     dispatch(setQuizAmount(+event.target.value))
   }
   return (
@@ -18,7 +18,7 @@ export const StartQuizScreen = () => {
       <div className='title-wrap'>
         <select name="select"
           className='btn btn--select'
-          onChange={changeHandlet}
+          onChange={changeHandler}
           defaultValue={'Оберіть кількість питань'}
         >
           <option value="Оберіть кількість питань" disabled >Оберіть кількість питань</option>
