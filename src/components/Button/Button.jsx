@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../scss/index.scss'
-const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  }) => {
+export const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  }) => {
   return (
     <button
       className={className}
@@ -15,4 +15,3 @@ const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  
   )
 }
 
-export default Button

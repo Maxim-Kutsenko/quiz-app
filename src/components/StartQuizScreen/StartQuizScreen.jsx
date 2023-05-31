@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../Button/Button'
+import {Button} from '../Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { startQuiz, setQuizAmount } from '../../redux/mainSlice'
 import '../../scss/index.scss'

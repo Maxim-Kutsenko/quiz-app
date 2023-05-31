@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Button from '../Button/Button'
+import {Button} from '../Button/Button'
 import '../../scss/index.scss'
 
 export const FinishScreen = () => {

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/mainSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import Loader from '../Loader/Loader';
-import Button from '../Button/Button'
+import {Loader} from '../Loader/Loader';
+import {Button} from '../Button/Button'
 import '../../scss/index.scss'
 
 export const QuizContainer = () => {

@@ -5,7 +5,7 @@ import { StartQuizScreen } from '../StartQuizScreen/StartQuizScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import '../../scss/index.scss'
 
-const QuizScreen = () => {
+ export const QuizScreen = () => {
   const quizStarted = useSelector((state) => state.mainSlice.quizStarted)
   return (
     <>
@@ -28,4 +28,3 @@ const QuizScreen = () => {
   )
 }
 
-export default QuizScreen
