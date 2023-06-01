@@ -1,5 +1,5 @@
 
-import {Button} from '../Button/Button'
+import { Button } from '../Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { startQuiz, setQuizAmount } from '../../redux/mainSlice'
 import '../../scss/index.scss'
@@ -10,6 +10,19 @@ export const StartQuizScreen = () => {
 
   function changeHandler(event) {
     dispatch(setQuizAmount(+event.target.value))
+  }
+  
+  let clickCount = 0
+  function clickHandler() {
+    if (readyToStart) {
+      dispatch(startQuiz())
+    } else {
+      clickCount++
+      if (clickCount === 5) {
+        window.alert('Спочатку оберіть кількість питань!')
+        clickCount = 0
+      }
+    }
   }
   return (
 
@@ -29,10 +42,9 @@ export const StartQuizScreen = () => {
         </select>
       </div>
       <Button
-        className={'btn btn--center'}
+        className={`btn btn--center ${!readyToStart ? 'btn--disabled' : ''}`}
         text={'Розпочати'}
-        disabled={!readyToStart}
-        onClick={() => dispatch(startQuiz())}
+        onClick={clickHandler}
       />
     </div>
   )

@@ -61,61 +61,74 @@ body {
   font-weight: 700;
   box-shadow: 2px 1px 10px #3e3333;
   margin-bottom: 20px;
-  transition: color 0.5s;
+  transition: transform 0.5s;
+  transform: scale(1);
+
+  @media(max-width:$tableScreen) {
+    width: 80%;
+  }
+
+  @media(max-width:$phoneMiddleScreen) {
+    width: 100%;
+    font-size: 16px;
+    min-height: 50px
+  }
 
   &:disabled {
     cursor: not-allowed;
     background-color: #4a4747;
   }
 
-  .btn--disabled {
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    transform: scale(1.1);
+  }
+
+  &--disabled {
     cursor: not-allowed;
     background-color: #4a4747;
   }
 
-  @media(max-width:$tableScreen){
-    width: 80%;
+  &--small {
+    width: 50px;
+    display: inline-flex;
+    margin-right: 10px;
   }
-  @media(max-width:$phoneMiddleScreen) {
-    width: 100%;
-    font-size: 16px;
-    min-height: 50px
+
+  &--select {
+    text-align: center;
+    margin: 0;
+    height: 50px;
+  }
+
+
+  &--center {
+    margin-inline: auto;
+  }
+
+  &--nav {
+    width: 120px;
+    background-color: #fff;
+    color: #000;
+    transform: scale(1);
+    margin: 0;
+
+    @media(max-width:$phoneMiddleScreen) {
+      width: 80px;
+      font-size: 12px;
+    }
   }
 }
 
-.btn--small {
-  width: 50px;
-  display: inline-flex;
-  margin-right: 10px;
-}
-.btn--select {
-  text-align: center;
-  margin: 0;
-  height: 50px;
-}
 .title-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-}
-
-.btn--center {
-  margin-inline: auto;
-}
-
-.btn--nav {
-  width: 120px;
-  background-color: #fff;
-  color: #000;
-  transform: scale(1);
-  margin: 0;
-
-  @media(max-width:$phoneMiddleScreen) {
-    width: 80px;
-    font-size: 12px;
-  }
 }
 
 .lds-facebook {
@@ -222,29 +235,17 @@ body {
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  @media(max-width:$tableScreen){
+
+  @media(max-width:$tableScreen) {
     width: 80%;
   }
+
   @media(max-width:$phoneMiddleScreen) {
     width: 100%;
   }
 }
 
-.btn input[type="radio"] {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  cursor: pointer;
-  opacity: 0.011;
-  z-index: 100;
-}
 
-.btn input[type="radio"]:checked+label {
-  color: #000;
-}
 
 .quiz-number {
   position: absolute;
@@ -268,14 +269,16 @@ body {
   padding: 10px;
   border-radius: 10px;
 
-  
+
   div {
     margin-bottom: 5px;
   }
 }
+
 .answers--correct {
   border-color: #1149a7;
 }
+
 .answers--wrong {
   border-color: #ff0000;
-} 
+}
