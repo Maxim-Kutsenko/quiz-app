@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState} from 'react'
 import { useSelector } from 'react-redux'
 import {Button} from '../Button/Button'
 import '../../scss/index.scss'
@@ -6,7 +6,7 @@ import '../../scss/index.scss'
 export const FinishScreen = () => {
   const answersCount = useSelector((state) => state.mainSlice.answersCount)
   const quizList = useSelector((state) => state.mainSlice.quizList)
-  const [showAnswers, setShowAnswers] = React.useState(false)
+  const [showAnswers, setShowAnswers] = useState(false)
 
   function showAnswersHandler() {
     setShowAnswers(true)

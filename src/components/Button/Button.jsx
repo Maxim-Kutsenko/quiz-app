@@ -1,4 +1,3 @@
-import React from 'react'
 import '../../scss/index.scss'
 export const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  }) => {
   return (

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { QuizContainer } from '../QuizContainer/QuizContainer';
 import { StartQuizScreen } from '../StartQuizScreen/StartQuizScreen';

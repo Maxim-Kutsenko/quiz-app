@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/mainSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
