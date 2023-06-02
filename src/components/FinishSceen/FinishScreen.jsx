@@ -1,6 +1,7 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import {Button} from '../Button/Button'
+import { Button } from '../Button/Button'
+import { CSSTransition } from 'react-transition-group'
 import '../../scss/index.scss'
 
 export const FinishScreen = () => {
@@ -13,10 +14,9 @@ export const FinishScreen = () => {
     document.body.classList.add('finish-screen')
   }
   return (
-    <div>
-
-      {!showAnswers ?
-        <>
+    <>
+      {!showAnswers &&
+        <div>
           <h1 className='title'>Тест закінчено!</h1>
           <div>
             <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
@@ -24,18 +24,23 @@ export const FinishScreen = () => {
           </div>
           <Button className={'btn btn--center'} text={'Показати відповіді'} onClick={showAnswersHandler} />
           <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
-        </>
-        :
+        </div>}
+      <CSSTransition
+        in={showAnswers}
+        classNames="fade"
+        timeout={500}
+        unmountOnExit
+      >
         <>
           <div className='answers-wrap'>
             {quizList.map((item, index) => {
               let isCorrect = item.correctIndex === item.activeId
               return (
-                <div className={`answers ${isCorrect ? 'answers--correct': 'answers--wrong'}`} key={index}>
+                <div className={`answers ${isCorrect ? 'answers--correct' : 'answers--wrong'}`} key={index}>
                   <div>{index + 1}. {item.question}</div>
                   <div>Ви відповіли: <span>
                     {item.answers[item.activeId]}
-                  </span> - <span style={{color:isCorrect ? '#1149a7' : '#ff0000'}}>{isCorrect ? 'вірно' : 'не вірно'}</span> 
+                  </span> - <span style={{ color: isCorrect ? '#1149a7' : '#ff0000' }}>{isCorrect ? 'вірно' : 'не вірно'}</span>
                   </div>
                   {!isCorrect && <div >Правильна відповідь: <span>{item.answers[item.correctIndex]}</span></div>}
                 </div>
@@ -44,10 +49,8 @@ export const FinishScreen = () => {
           </div>
           <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
         </>
-      }
-
-
-    </div>
+      </CSSTransition>
+    </>
   )
 }
 

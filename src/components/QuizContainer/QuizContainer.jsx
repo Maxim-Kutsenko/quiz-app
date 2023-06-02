@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/mainSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import {Loader} from '../Loader/Loader';
-import {Button} from '../Button/Button'
+import { Loader } from '../Loader/Loader';
+import { Button } from '../Button/Button'
+import { Modal } from '../Modal/Modal'
 import '../../scss/index.scss'
 
 export const QuizContainer = () => {
@@ -13,6 +14,7 @@ export const QuizContainer = () => {
     const analytic = useSelector((state) => state.mainSlice.analytic)
 
     const [loading, setLoading] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -29,11 +31,10 @@ export const QuizContainer = () => {
 
     function nextClickHandler() {
         if (count === quizList.length - 1) {
-            if (!window.confirm('Завершити тест?')) {
-                return false
-            }
+            setShowModal(true)
+        } else {
+            dispatch(incrementCount())
         }
-        dispatch(incrementCount())
     }
     function prevClickHandler() {
         dispatch(decrementCount())
@@ -122,6 +123,19 @@ export const QuizContainer = () => {
                                 />
                             </div>
                         </div>
+                        <CSSTransition
+                            in={showModal}
+                            classNames="fade"
+                            timeout={500}
+                            unmountOnExit
+                        >
+                            <Modal
+                                text={'Завершити тест?'}
+                                buttonRequired={true}
+                                onCancel={() => setShowModal(false)}
+                                onConfirm={() => dispatch(incrementCount())}
+                            />
+                        </CSSTransition>
                     </div>
                 </CSSTransition>
             </SwitchTransition>
