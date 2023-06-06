@@ -27,11 +27,12 @@ export const rootSlice = createSlice({
     startQuiz: (state) => {
       state.quizStarted = true
     },
-    incrementCount: (state) => {
-      state.count = state.count + 1
-    },
-    decrementCount: (state) => {
-      state.count = state.count - 1
+    updateCount: (state, action) => {
+      const amount = action.payload;
+      return {
+        ...state,
+        count: state.count + amount,
+      };
     },
     setAnalytic: (state, action) => {
       const { correct, activeId } = action.payload;
@@ -69,6 +70,7 @@ export const {
   finishLoading,
   startQuiz,
   incrementCount,
+  updateCount,
   startLoading,
   decrementCount,
   setQuizAmount,

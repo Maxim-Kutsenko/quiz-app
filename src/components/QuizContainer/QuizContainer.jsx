@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/rootSlice'
+import { incrementCount, setAnalytic, decrementCount, setAnswersCount, updateCount } from '../../redux/rootSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Loader } from '../Loader/Loader';
@@ -33,12 +33,11 @@ export const QuizContainer = () => {
         if (count === quizList.length - 1) {
             setShowModal(true)
         } else {
-            dispatch(incrementCount())
+            dispatch(updateCount(1))
         }
     }
     function prevClickHandler() {
-        dispatch(decrementCount())
-
+        dispatch(updateCount(-1))
     }
     function analyticHandler(event, id) {
         let correctId = quizList[count].correctIndex
@@ -136,6 +135,7 @@ export const QuizContainer = () => {
                                 onConfirm={() => dispatch(incrementCount())}
                             />
                         </CSSTransition>
+
                     </div>
                 </CSSTransition>
             </SwitchTransition>
