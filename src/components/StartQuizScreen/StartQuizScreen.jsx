@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { Button } from '../Button/Button'
 import { Modal } from '../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { startQuiz, setQuizAmount } from '../../redux/mainSlice'
+import { startQuiz, setQuizAmount } from '../../redux/rootSlice'
 import { CSSTransition } from 'react-transition-group'
 import '../../scss/index.scss'
 
 export const StartQuizScreen = () => {
   const dispatch = useDispatch()
-  const readyToStart = useSelector((state) => state.mainSlice.readyToStart)
+  const readyToStart = useSelector((state) => state.rootSlice.readyToStart)
   const [showModal, setShowModal] = useState(false)
   
   function changeHandler(event) {

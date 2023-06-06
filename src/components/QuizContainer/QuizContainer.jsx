@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/mainSlice'
+import { incrementCount, setAnalytic, decrementCount, setAnswersCount } from '../../redux/rootSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Loader } from '../Loader/Loader';
@@ -9,9 +9,9 @@ import { Modal } from '../Modal/Modal'
 import '../../scss/index.scss'
 
 export const QuizContainer = () => {
-    const quizList = useSelector((state) => state.mainSlice.quizList)
-    const count = useSelector((state) => state.mainSlice.count)
-    const analytic = useSelector((state) => state.mainSlice.analytic)
+    const quizList = useSelector((state) => state.rootSlice.quizList)
+    const count = useSelector((state) => state.rootSlice.count)
+    const analytic = useSelector((state) => state.rootSlice.analytic)
 
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)

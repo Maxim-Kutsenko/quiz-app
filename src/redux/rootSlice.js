@@ -13,8 +13,8 @@ const initialState = {
 
 }
 
-export const mainSlice = createSlice({
-  name: 'mainSlice',
+export const rootSlice = createSlice({
+  name: 'rootSlice',
   initialState,
   reducers: {
     startLoading: (state) => {
@@ -75,6 +75,6 @@ export const {
   setAnalytic,
   setAnswersCount,
   
-} = mainSlice.actions
+} = rootSlice.actions
 
-export default mainSlice.reducer
+export default rootSlice.reducer

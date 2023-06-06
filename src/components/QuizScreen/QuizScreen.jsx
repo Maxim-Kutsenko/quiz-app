@@ -5,7 +5,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import '../../scss/index.scss'
 
  export const QuizScreen = () => {
-  const quizStarted = useSelector((state) => state.mainSlice.quizStarted)
+  const quizStarted = useSelector((state) => state.rootSlice.quizStarted)
   return (
     <>
       <SwitchTransition>

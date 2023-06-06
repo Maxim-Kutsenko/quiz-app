@@ -2,7 +2,7 @@ import {Loader} from './components/Loader/Loader';
 import { useEffect } from 'react';
 import {QuizScreen} from './components/QuizScreen/QuizScreen';
 import { useSelector, useDispatch } from 'react-redux'
-import { startLoading, finishLoading } from './redux/mainSlice'
+import { startLoading, finishLoading } from './redux/rootSlice'
 import {CSSTransition,SwitchTransition } from 'react-transition-group'
 
 import './scss/index.scss';
@@ -12,7 +12,7 @@ export function sleep(time) {
 }
 
 function App() {
-  const loading = useSelector((state) => state.mainSlice.loading)
+  const loading = useSelector((state) => state.rootSlice.loading)
 
   const dispatch = useDispatch()
 

@@ -5,8 +5,8 @@ import { CSSTransition } from 'react-transition-group'
 import '../../scss/index.scss'
 
 export const FinishScreen = () => {
-  const answersCount = useSelector((state) => state.mainSlice.answersCount)
-  const quizList = useSelector((state) => state.mainSlice.quizList)
+  const answersCount = useSelector((state) => state.rootSlice.answersCount)
+  const quizList = useSelector((state) => state.rootSlice.quizList)
   const [showAnswers, setShowAnswers] = useState(false)
 
   function showAnswersHandler() {
