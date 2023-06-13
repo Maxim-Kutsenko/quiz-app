@@ -1,4 +1,4 @@
-import '../../scss/index.scss'
+import './loader.scss'
 export const Loader = ({text, textRequired}) => (
 
     <div className='loader-wrapper'>

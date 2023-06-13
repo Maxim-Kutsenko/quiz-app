@@ -1,12 +1,13 @@
 import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { incrementCount, setAnalytic, decrementCount, setAnswersCount, updateCount } from '../../redux/rootSlice'
+import { setAnalytic,  setAnswersCount, updateCount } from '../../redux/rootSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button'
 import { Modal } from '../Modal/Modal'
-import '../../scss/index.scss'
+import {Title} from '../Title/Title'
+import './quizContainer.scss'
 
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
@@ -89,7 +90,7 @@ export const QuizContainer = () => {
                     unmountOnExit
                 >
                     <div className="quiz-contaier">
-                        <h2 className="title">{quizList[count]?.question}</h2>
+                        <Title>{quizList[count]?.question}</Title>
                         <div className="button-wrap">
                             {quizList[count]?.answers.map((item, index) =>
                                 <Button
@@ -114,13 +115,13 @@ export const QuizContainer = () => {
                                         `Питання ${count + 1} з ${quizList.length}`
                                     }
                                 </div>
-
                                 <Button text={count + 1 !== quizList.length ? 'Далі >' : 'Завершити'}
                                     className={'btn btn--nav'}
                                     onClick={nextClickHandler}
                                     disabled={quizList[count].activeId === undefined}
                                 />
                             </div>
+
                         </div>
                         <CSSTransition
                             in={showModal}
@@ -132,10 +133,9 @@ export const QuizContainer = () => {
                                 text={'Завершити тест?'}
                                 buttonRequired={true}
                                 onCancel={() => setShowModal(false)}
-                                onConfirm={() => dispatch(incrementCount())}
+                                onConfirm={() =>  dispatch(updateCount(1))}
                             />
                         </CSSTransition>
-
                     </div>
                 </CSSTransition>
             </SwitchTransition>

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Button } from '../Button/Button'
 import { Modal } from '../Modal/Modal'
+import { Title } from '../Title/Title'
 import { useDispatch, useSelector } from 'react-redux'
 import { startQuiz, setQuizAmount } from '../../redux/rootSlice'
 import { CSSTransition } from 'react-transition-group'
-import '../../scss/index.scss'
+import './startQuizScreen.scss'
 
 export const StartQuizScreen = () => {
   const dispatch = useDispatch()
@@ -32,7 +33,7 @@ export const StartQuizScreen = () => {
   const clickHandler = countHandler()
   return (
     <div>
-      <h1 className='title'>Готові розпочати тест?</h1>
+      <Title>Готові розпочати тест?</Title>
       <div className='title-wrap'>
         <select name="select"
           className='btn btn--select'

@@ -1,5 +1,5 @@
 import { Button } from '../Button/Button'
-import '../../scss/index.scss'
+import './modal.scss'
 
 export const Modal = ({ text, onConfirm, onCancel, buttonRequired }) => {
     return (

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Button } from '../Button/Button'
+import { Title } from '../Title/Title'
 import { CSSTransition } from 'react-transition-group'
-import '../../scss/index.scss'
+import './finishScreen.scss'
 
 export const FinishScreen = () => {
   const answersCount = useSelector((state) => state.rootSlice.answersCount)
@@ -17,7 +18,7 @@ export const FinishScreen = () => {
     <>
       {!showAnswers &&
         <div>
-          <h1 className='title'>Тест закінчено!</h1>
+          <Title>Тест закінчено!</Title>
           <div>
             <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
             <div className='analytic'>Не правильних відповідей: <span style={{ color: '#ff0000' }}>{answersCount.wrong}</span></div>

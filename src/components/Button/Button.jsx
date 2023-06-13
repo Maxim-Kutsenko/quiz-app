@@ -1,4 +1,4 @@
-import '../../scss/index.scss'
+import './button.scss'
 export const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  }) => {
   return (
     <button
