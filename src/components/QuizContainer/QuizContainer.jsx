@@ -74,7 +74,7 @@ export const QuizContainer = () => {
                     classNames="fade"
                     unmountOnExit
                 >
-                    <Loader textRequired={true} text={'Обробляємо результат, зачекайте'} />
+                    <Loader textRequired={true} text={'Processing the result, please wait'} />
                 </CSSTransition>
             </SwitchTransition>
 
@@ -103,7 +103,7 @@ export const QuizContainer = () => {
                                 />
                             )}
                             <div className="arrow-wrap">
-                                <Button text={'< Назад'}
+                                <Button text={'< Back'}
                                     className={'btn btn--nav'}
                                     disabled={count <= 0}
                                     onClick={prevClickHandler}
@@ -112,10 +112,10 @@ export const QuizContainer = () => {
                                     {window.innerWidth < 630 ?
                                         `${count + 1} / ${quizList.length}`
                                         :
-                                        `Питання ${count + 1} з ${quizList.length}`
+                                        `Question  ${count + 1} of ${quizList.length}`
                                     }
                                 </div>
-                                <Button text={count + 1 !== quizList.length ? 'Далі >' : 'Завершити'}
+                                <Button text={count + 1 !== quizList.length ? 'Next >' : 'Complete'}
                                     className={'btn btn--nav'}
                                     onClick={nextClickHandler}
                                     disabled={quizList[count].activeId === undefined}
@@ -130,7 +130,7 @@ export const QuizContainer = () => {
                             unmountOnExit
                         >
                             <Modal
-                                text={'Завершити тест?'}
+                                text={'Finish the quiz?'}
                                 buttonRequired={true}
                                 onCancel={() => setShowModal(false)}
                                 onConfirm={() =>  dispatch(updateCount(1))}

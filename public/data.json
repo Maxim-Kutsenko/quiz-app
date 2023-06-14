@@ -1,67 +1,67 @@
 {
     "questions": [
         {
-            "question": "Столиця України?",
+            "question": "The capital of Ukraine?",
             "answers": [
-                "Муровані Курилівці",
-                "Бєлгород",
-                "Кільтява",
-                "Київ"
+                "Mirovany Kurylivtsi",
+                "Belgorod",
+                "Kiltyava",
+                "Kyiv"
             ],
             "correctIndex": 3
         },
         {
-            "question": "Скільки ейфелевих веж в Парижі",
+            "question": "How many Eiffel towers are in Paris",
             "answers": [
-                "більше 10",
-                "три",
-                "одна",
-                "жодної"
+                "mort than 10",
+                "three",
+                "one",
+                "none"
             ],
             "correctIndex": 2
         },
         {
-            "question": "Дата початку Другої світової війни",
+            "question": "Date of the beginning of World War II",
             "answers": [
-                "26 жовтня 1939 року",
-                "01 вересня 1939 року",
-                "9 травня 1945 року",
-                "22 червня 1941 року"
+                "October 26, 1939",
+                "September 01, 1939",
+                "May 9, 1945",
+                "June 22, 1941"
             ],
             "correctIndex": 1
         },
         {
-            "question": "Як називається наша рідна галактика?",
+            "question": "What is the name of our home galaxy?",
             "answers": [
-                "Чумацький Шлях",
-                "Андромеда",
-                "Велика Магелланова Хмара",
+                "The Milky Way",
+                "Andromeda",
+                "The Large Magellanic Cloud",
                 "NGC 6872"
             ],
             "correctIndex": 0
         },
         {
-            "question": "Хто був прем'єр-міністром Великої Британії з 1841 по 1846 рік?",
+            "question": "Who was the Prime Minister of Great Britain from 1841 to 1846?",
             "answers": [
-                "Едуард Сміт-Стенлі",
+                "Edward Smith-Stanley",
                 "Лорд Джон Рассел",
-                "Борис Джонсон",
-                "Сер Роберт Піль"
+                "Lord John Russell",
+                "Sir Robert Peel"
             ],
             "correctIndex": 3
         },
         {
-            "question": "Столиця Франції",
+            "question": "The capital of France",
             "answers": [
-                "Париж",
-                "Варшава",
+                "Paris",
+                "Warsaw",
                 "Вінниця",
-                "Анкара"
+                "Ankara"
             ],
             "correctIndex": 0
         },
         {
-            "question": "Коли розпочалась Україно-російська війна",
+            "question": "When did russia's invasion of Ukraine begin?",
             "answers": [
                 "01.02.2022",
                 "21.03.2022",
@@ -71,7 +71,7 @@
             "correctIndex": 2
         },
         {
-            "question": "Яка наукова назва метелика?",
+            "question": "What is the scientific name of the butterfly?",
             "answers": [
                 "Apis",
                 "Coleoptera",
@@ -81,7 +81,7 @@
             "correctIndex": 3
         },
         {
-            "question": "Яка температура поверхні сонця?",
+            "question": "What is the sun's surface temperature?",
             "answers": [
                 "1,233 K",
                 "5,778 K",
@@ -91,7 +91,7 @@
             "correctIndex": 1
         },
         {
-            "question": "Хто грає у фільмі Стажування?",
+            "question": "Who stars in the movie Internship?",
             "answers": [
                 "Ben Stiller, Jonah Hill",
                 "Courteney Cox, Matt LeBlanc",
@@ -101,27 +101,27 @@
             "correctIndex": 3
         },
         {
-            "question": "Столиця Іспанії?",
+            "question": "The capital of Spain?",
             "answers": [
-                "Берлін",
-                "Лос Анджелес",
-                "Мадрид",
-                "Сан Хуан"
+                "Berlin",
+                "Los Angeles",
+                "Madrid",
+                "San Juan"
             ],
             "correctIndex": 2
         },
         {
-            "question": "Якого кольору прапор України?",
+            "question": "What color is the flag of Ukraine?",
             "answers": [
-                "Червоно-синій",
+                "Red and blue",
                 "Синьо-жовтий",
-                "Жовто-блакитний",
-                "Білий, синій, Червоний"
+                "Blue and yellow",
+                "White, blue, red"
             ],
             "correctIndex": 2
         },
         {
-            "question": "Скільки буде 70 градусів Фаренгейта за Цельсієм?",
+            "question": "How much is 70 degrees Fahrenheit?",
             "answers": [
                 "18.8889",
                 "20",
@@ -131,17 +131,17 @@
             "correctIndex": 2
         },
         {
-            "question": "Коли народився Степан Бандреа?",
+            "question": "When Stepan Bandrea was born?",
             "answers": [
-                "1 січня 1909",
-                "15 лютого 1921",
-                "18 червня 1918",
-                "15 січня 1900"
+                "January 1, 1909",
+                "February 15, 1921",
+                "June 18, 1918",
+                "January 15, 1900"
             ],
             "correctIndex": 0
         },
         {
-            "question": "Яка відстань від Землі до Місяця?",
+            "question": "What is the distance from the Earth to the Moon?",
             "answers": [
                 "7,918 miles (12,742 km)",
                 "86,881 miles (139,822 km)",
@@ -151,7 +151,7 @@
             "correctIndex": 2
         },
         {
-            "question": "Скліьки буде 65 помножити на 52?",
+            "question": "The number of glasses is 65 times 52?",
             "answers": [
                 "117",
                 "3120",
@@ -161,7 +161,7 @@
             "correctIndex": 2
         },
         {
-            "question": "Скільки в висоту має гора Еверест?",
+            "question": "How high is Mount Everest?",
             "answers": [
                 "6,683 ft (2,037 m)",
                 "7,918 ft (2,413 m)",
@@ -171,7 +171,7 @@
             "correctIndex": 3
         },
         {
-            "question": "Коли вийшов фільм 'Месники'?",
+            "question": "When the movie 'The Avengers'?",
             "answers": [
                 "May 2, 2008",
                 "May 4, 2012",
@@ -181,7 +181,7 @@
             "correctIndex": 1
         },
         {
-            "question": "Скільки буде 48,879 у шістнадцятковій системі числення?",
+            "question": "how much is 48,879 in hexadecimal notation?",
             "answers": [
                 "0x18C1",
                 "0xBEEF",
@@ -191,7 +191,7 @@
             "correctIndex": 1
         },
         {
-            "question": "Як називається найбільша технологічна компанія в Південній Кореї?",
+            "question": "What is the name of the largest technology company in South Korea??",
             "answers": [
                 "Aplle",
                 "Samsung",

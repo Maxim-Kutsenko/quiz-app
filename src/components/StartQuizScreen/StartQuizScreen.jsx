@@ -33,14 +33,14 @@ export const StartQuizScreen = () => {
   const clickHandler = countHandler()
   return (
     <div>
-      <Title>Готові розпочати тест?</Title>
+      <Title>Are you ready to start the test?</Title>
       <div className='title-wrap'>
         <select name="select"
           className='btn btn--select'
           onChange={changeHandler}
-          defaultValue={'Оберіть кількість питань'}
+          defaultValue={'Select the amount of questions'}
         >
-          <option value="Оберіть кількість питань" disabled >Оберіть кількість питань</option>
+          <option value="Select the amount of questions" disabled >Select the amount of questions</option>
           <option value="5" >5</option>
           <option value="10">10</option>
           <option value="15">15</option>
@@ -49,7 +49,7 @@ export const StartQuizScreen = () => {
       </div>
       <Button
         className={`btn btn--center ${!readyToStart ? 'btn--disabled' : ''}`}
-        text={'Розпочати'}
+        text={'Get started'}
         onClick={clickHandler}
       />
       <CSSTransition
@@ -59,7 +59,7 @@ export const StartQuizScreen = () => {
         unmountOnExit
       >
         <Modal
-          text={'Оберіть кількість питань!'}
+          text={'Select the amount of questions first!'}
           buttonRequired={false}
           onConfirm={() => setShowModal(false)}
         />

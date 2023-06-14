@@ -9,13 +9,13 @@ export const Modal = ({ text, onConfirm, onCancel, buttonRequired }) => {
                 <div className="modal-wrap">
                     <Button
                         className={'btn btn--center btn--modal'}
-                        text={'ОК'}
+                        text={'Ok'}
                         onClick={onConfirm}
                     />
                     {buttonRequired &&
                         <Button
                             className={'btn btn--center btn--modal'}
-                            text={'Відміна'}
+                            text={'Cancel'}
                             onClick={onCancel}
                         />}
                 </div>

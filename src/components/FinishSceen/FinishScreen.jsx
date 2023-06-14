@@ -18,13 +18,13 @@ export const FinishScreen = () => {
     <>
       {!showAnswers &&
         <div>
-          <Title>Тест закінчено!</Title>
+          <Title>Quiz completed!</Title>
           <div>
-            <div className='analytic'>Правильних відповідей: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
-            <div className='analytic'>Не правильних відповідей: <span style={{ color: '#ff0000' }}>{answersCount.wrong}</span></div>
+            <div className='analytic'>Correct answers: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
+            <div className='analytic'>Wrong answers: <span style={{ color: '#ff0000' }}>{answersCount.wrong}</span></div>
           </div>
-          <Button className={'btn btn--center'} text={'Показати відповіді'} onClick={showAnswersHandler} />
-          <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'} text={'Show answers'} onClick={showAnswersHandler} />
+          <Button className={'btn btn--center'} text={'New quiz'} onClick={() => window.location.reload()} />
         </div>}
       <CSSTransition
         in={showAnswers}
@@ -39,16 +39,16 @@ export const FinishScreen = () => {
               return (
                 <div className={`answers ${isCorrect ? 'answers--correct' : 'answers--wrong'}`} key={index}>
                   <div>{index + 1}. {item.question}</div>
-                  <div>Ви відповіли: <span>
+                  <div>You answered: <span>
                     {item.answers[item.activeId]}
-                  </span> - <span style={{ color: isCorrect ? '#1149a7' : '#ff0000' }}>{isCorrect ? 'вірно' : 'не вірно'}</span>
+                  </span> - <span style={{ color: isCorrect ? '#1149a7' : '#ff0000' }}>{isCorrect ? 'correct' : 'wrong'}</span>
                   </div>
-                  {!isCorrect && <div >Правильна відповідь: <span>{item.answers[item.correctIndex]}</span></div>}
+                  {!isCorrect && <div >The correct answer is: <span>{item.answers[item.correctIndex]}</span></div>}
                 </div>
               )
             })}
           </div>
-          <Button className={'btn btn--center'} text={'Новий тест'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'} text={'New quiz'} onClick={() => window.location.reload()} />
         </>
       </CSSTransition>
     </>
