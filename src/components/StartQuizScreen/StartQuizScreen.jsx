@@ -5,7 +5,17 @@ import { Title } from '../Title/Title'
 import { useDispatch, useSelector } from 'react-redux'
 import { startQuiz, setQuizAmount } from '../../redux/rootSlice'
 import { CSSTransition } from 'react-transition-group'
-import './startQuizScreen.scss'
+import styled from 'styled-components'
+
+
+const TitleWrap = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+`
+const Select = styled(Button).attrs({ as: 'select' })``
 
 export const StartQuizScreen = () => {
   const dispatch = useDispatch()
@@ -31,12 +41,13 @@ export const StartQuizScreen = () => {
     }
   }
   const clickHandler = countHandler()
+
   return (
     <div>
       <Title>Are you ready to start the test?</Title>
-      <div className='title-wrap'>
-        <select name="select"
-          className='btn btn--select'
+      <TitleWrap>
+        <Select name="select"
+          select
           onChange={changeHandler}
           defaultValue={'Select the amount of questions'}
         >
@@ -45,13 +56,9 @@ export const StartQuizScreen = () => {
           <option value="10">10</option>
           <option value="15">15</option>
           <option value="20">20</option>
-        </select>
-      </div>
-      <Button
-        className={`btn btn--center ${!readyToStart ? 'btn--disabled' : ''}`}
-        text={'Get started'}
-        onClick={clickHandler}
-      />
+        </Select>
+      </TitleWrap>
+      <Button center notActive={!readyToStart} onClick={clickHandler}>Get started</Button>
       <CSSTransition
         in={showModal}
         classNames="fade"

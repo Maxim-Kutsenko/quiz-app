@@ -7,8 +7,37 @@ import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button'
 import { Modal } from '../Modal/Modal'
 import {Title} from '../Title/Title'
-import './quizContainer.scss'
+import styled from 'styled-components';
+import { cssVariables } from '../cssVariables';
 
+
+const ButtonWrap = styled.div`
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const ArrowWrap = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+  
+    @media(max-width:${cssVariables.$tableScreen}) {
+      width: 80%;
+    }
+  
+    @media(max-width:${cssVariables.$phoneMiddleScreen}) {
+      width: 100%;
+    }
+`
+const QuizStatus = styled.div`
+    font-size:20px;
+`
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
@@ -40,13 +69,12 @@ export const QuizContainer = () => {
     function prevClickHandler() {
         dispatch(updateCount(-1))
     }
-    function analyticHandler(event, id) {
+    function analyticHandler(id) {
         let correctId = quizList[count].correctIndex
-        let currentId = +event.target.dataset.id
-        let isCorrect = correctId === currentId
+        let isCorrect = correctId === id
         dispatch(setAnalytic({
             correct: isCorrect,
-            activeId: currentId
+            activeId: id
         }))
     }
 
@@ -89,40 +117,43 @@ export const QuizContainer = () => {
                     classNames="fade"
                     unmountOnExit
                 >
-                    <div className="quiz-contaier">
+                    <div>
                         <Title>{quizList[count]?.question}</Title>
-                        <div className="button-wrap">
+                        <ButtonWrap>
                             {quizList[count]?.answers.map((item, index) =>
                                 <Button
-                                    className={`btn ${quizList[count].activeId === index ? 'active' : ''}`}
-                                    id={index}
-                                    text={item}
+                                    active={quizList[count].activeId === index}
                                     key={index}
-                                    onClick={(event) => analyticHandler(event, index)}
-                                    quizNumber={true}
-                                />
+                                    onClick={() => analyticHandler(index)}
+                                >
+                                    {item}
+                                </Button>
                             )}
-                            <div className="arrow-wrap">
-                                <Button text={'< Back'}
-                                    className={'btn btn--nav'}
+                            <ArrowWrap>
+                                <Button
+                                    navBtn
                                     disabled={count <= 0}
                                     onClick={prevClickHandler}
-                                />
-                                <div className='quiz-status'>
+                                >
+                                    {'< Back'}
+                                </Button>
+                                <QuizStatus>
                                     {window.innerWidth < 630 ?
                                         `${count + 1} / ${quizList.length}`
                                         :
                                         `Question  ${count + 1} of ${quizList.length}`
                                     }
-                                </div>
-                                <Button text={count + 1 !== quizList.length ? 'Next >' : 'Complete'}
-                                    className={'btn btn--nav'}
+                                </QuizStatus>
+                                <Button
+                                    navBtn
                                     onClick={nextClickHandler}
                                     disabled={quizList[count].activeId === undefined}
-                                />
-                            </div>
+                                >
+                                    {count + 1 !== quizList.length ? 'Next >' : 'Complete'}
+                                </Button>   
+                            </ArrowWrap>
 
-                        </div>
+                        </ButtonWrap>
                         <CSSTransition
                             in={showModal}
                             classNames="fade"

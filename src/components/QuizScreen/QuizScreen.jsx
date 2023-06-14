@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { QuizContainer } from '../QuizContainer/QuizContainer';
 import { StartQuizScreen } from '../StartQuizScreen/StartQuizScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import '../../scss/index.scss'
+
 
  export const QuizScreen = () => {
   const quizStarted = useSelector((state) => state.rootSlice.quizStarted)
