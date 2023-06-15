@@ -33,3 +33,11 @@
   .quiz-status {
     font-size: 20px;
   }
+  .progress-line {
+    position:absolute;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background:$uiBackground;
+    transition:width 0.5s;
+  }

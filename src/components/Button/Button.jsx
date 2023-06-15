@@ -1,5 +1,5 @@
 import './button.scss'
-export const Button = ({ onClick, backColor, text, id, disabled,className, quizNumber  }) => {
+export const Button = ({ onClick, backColor, text, id, disabled,className, children  }) => {
   return (
     <button
       className={className}
@@ -7,9 +7,8 @@ export const Button = ({ onClick, backColor, text, id, disabled,className, quizN
       data-id={id}
       style={{backgroundColor:backColor}}
       disabled={disabled}
-    >
-    {quizNumber && <span className='quiz-number'>{id+1}</span>}  
-      {text}
+    > 
+      {children}
     </button>
   )
 }

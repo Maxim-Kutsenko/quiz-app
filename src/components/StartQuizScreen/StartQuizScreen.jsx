@@ -49,9 +49,10 @@ export const StartQuizScreen = () => {
       </div>
       <Button
         className={`btn btn--center ${!readyToStart ? 'btn--disabled' : ''}`}
-        text={'Get started'}
         onClick={clickHandler}
-      />
+        >
+          Get started
+        </Button>
       <CSSTransition
         in={showModal}
         classNames="fade"

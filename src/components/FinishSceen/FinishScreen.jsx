@@ -23,8 +23,8 @@ export const FinishScreen = () => {
             <div className='analytic'>Correct answers: <span style={{ color: 'blue' }}>{answersCount.correct}</span></div>
             <div className='analytic'>Wrong answers: <span style={{ color: '#ff0000' }}>{answersCount.wrong}</span></div>
           </div>
-          <Button className={'btn btn--center'} text={'Show answers'} onClick={showAnswersHandler} />
-          <Button className={'btn btn--center'} text={'New quiz'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'}  onClick={showAnswersHandler} >Show answers</Button>
+          <Button className={'btn btn--center'}  onClick={() => window.location.reload()}>New quiz</Button>
         </div>}
       <CSSTransition
         in={showAnswers}
@@ -48,7 +48,7 @@ export const FinishScreen = () => {
               )
             })}
           </div>
-          <Button className={'btn btn--center'} text={'New quiz'} onClick={() => window.location.reload()} />
+          <Button className={'btn btn--center'} onClick={() => window.location.reload()}>New quiz</Button>
         </>
       </CSSTransition>
     </>
