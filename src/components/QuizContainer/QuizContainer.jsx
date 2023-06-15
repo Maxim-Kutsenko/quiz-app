@@ -38,6 +38,10 @@ const ArrowWrap = styled.div`
 const QuizStatus = styled.div`
     font-size:20px;
 `
+const QuizIndex = styled.span`
+    position: absolute;
+    left: 10px;
+`
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
@@ -126,7 +130,7 @@ export const QuizContainer = () => {
                                     key={index}
                                     onClick={() => analyticHandler(index)}
                                 >
-                                    {item}
+                                  <QuizIndex>{index+1}.</QuizIndex> {item}
                                 </Button>
                             )}
                             <ArrowWrap>
