@@ -1,12 +1,12 @@
 import { useLayoutEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setAnalytic,  setAnswersCount, updateCount } from '../../redux/rootSlice'
+import { setAnalytic, setAnswersCount, updateCount } from '../../redux/rootSlice'
 import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button'
 import { Modal } from '../Modal/Modal'
-import {Title} from '../Title/Title'
+import { Title } from '../Title/Title'
 import styled from 'styled-components';
 import { cssVariables } from '../cssVariables';
 
@@ -42,6 +42,15 @@ const QuizIndex = styled.span`
     position: absolute;
     left: 10px;
 `
+const ProgressLine = styled.div`
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: ${(props) => props.width}%;
+    height: 5px;
+    background:${cssVariables.$uiBackground};
+    transition:width 0.5s;
+`
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
@@ -49,7 +58,7 @@ export const QuizContainer = () => {
 
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)
-
+    const [tempCount, setTempCount] = useState(0)
     const dispatch = useDispatch()
 
     useLayoutEffect(() => {
@@ -61,6 +70,7 @@ export const QuizContainer = () => {
             setLoading(false);
         }, 2000);
         return () => clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [count, quizList.length]);
 
     function nextClickHandler() {
@@ -68,6 +78,9 @@ export const QuizContainer = () => {
             setShowModal(true)
         } else {
             dispatch(updateCount(1))
+        }
+        if (count === tempCount && count !== quizList.length - 1) {
+            setTempCount(prev => prev + 1)
         }
     }
     function prevClickHandler() {
@@ -114,66 +127,73 @@ export const QuizContainer = () => {
     }
     function renderQuiz() {
         return (
-            <SwitchTransition>
-                <CSSTransition
-                    key={count}
-                    timeout={500}
-                    classNames="fade"
-                    unmountOnExit
-                >
-                    <div>
-                        <Title>{quizList[count]?.question}</Title>
-                        <ButtonWrap>
-                            {quizList[count]?.answers.map((item, index) =>
-                                <Button
-                                    active={quizList[count].activeId === index}
-                                    key={index}
-                                    onClick={() => analyticHandler(index)}
-                                >
-                                  <QuizIndex>{index+1}.</QuizIndex> {item}
-                                </Button>
-                            )}
-                            <ArrowWrap>
-                                <Button
-                                    navBtn
-                                    disabled={count <= 0}
-                                    onClick={prevClickHandler}
-                                >
-                                    {'< Back'}
-                                </Button>
-                                <QuizStatus>
-                                    {window.innerWidth < 630 ?
-                                        `${count + 1} / ${quizList.length}`
-                                        :
-                                        `Question  ${count + 1} of ${quizList.length}`
-                                    }
-                                </QuizStatus>
-                                <Button
-                                    navBtn
-                                    onClick={nextClickHandler}
-                                    disabled={quizList[count].activeId === undefined}
-                                >
-                                    {count + 1 !== quizList.length ? 'Next >' : 'Complete'}
-                                </Button>   
-                            </ArrowWrap>
+            <>
+                <ProgressLine width={tempCount * (100 / quizList.length)} />
+                <SwitchTransition>
+                    <CSSTransition
+                        key={count}
+                        timeout={500}
+                        classNames="fade"
+                        unmountOnExit
+                    >
+                        <div>
+                            <Title>{quizList[count]?.question}</Title>
+                            <ButtonWrap>
+                                {quizList[count]?.answers.map((item, index) =>
+                                    <Button
+                                        active={quizList[count].activeId === index}
+                                        key={index}
+                                        onClick={() => analyticHandler(index)}
+                                    >
+                                        <QuizIndex>{index + 1}.</QuizIndex> {item}
+                                    </Button>
+                                )}
+                                <ArrowWrap>
+                                    <Button
+                                        navBtn
+                                        disabled={count <= 0}
+                                        onClick={prevClickHandler}
+                                    >
+                                        {'< Back'}
+                                    </Button>
+                                    <QuizStatus>
+                                        {window.innerWidth < 630 ?
+                                            `${count + 1} / ${quizList.length}`
+                                            :
+                                            `Question  ${count + 1} of ${quizList.length}`
+                                        }
+                                    </QuizStatus>
+                                    <Button
+                                        navBtn
+                                        onClick={nextClickHandler}
+                                        disabled={quizList[count].activeId === undefined}
+                                    >
+                                        {count + 1 !== quizList.length ? 'Next >' : 'Complete'}
+                                    </Button>
+                                </ArrowWrap>
 
-                        </ButtonWrap>
-                        <CSSTransition
-                            in={showModal}
-                            classNames="fade"
-                            timeout={500}
-                            unmountOnExit
-                        >
-                            <Modal
-                                text={'Finish the quiz?'}
-                                buttonRequired={true}
-                                onCancel={() => setShowModal(false)}
-                                onConfirm={() =>  dispatch(updateCount(1))}
-                            />
-                        </CSSTransition>
-                    </div>
-                </CSSTransition>
-            </SwitchTransition>
+                            </ButtonWrap>
+                            <CSSTransition
+                                in={showModal}
+                                classNames="fade"
+                                timeout={500}
+                                unmountOnExit
+                            >
+                                <Modal
+                                    text={'Finish the quiz?'}
+                                    buttonRequired={true}
+                                    onCancel={() => setShowModal(false)}
+                                    onConfirm={() => {
+                                        dispatch(updateCount(1))
+                                        setTempCount(prev => prev + 1)
+                                    }}
+                                />
+                            </CSSTransition>
+                        </div>
+                    </CSSTransition>
+                </SwitchTransition>
+            </>
+
         )
     }
 

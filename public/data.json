@@ -44,7 +44,7 @@
             "question": "Who was the Prime Minister of Great Britain from 1841 to 1846?",
             "answers": [
                 "Edward Smith-Stanley",
-                "Лорд Джон Рассел",
+                "Boris Johnson",
                 "Lord John Russell",
                 "Sir Robert Peel"
             ],
@@ -55,7 +55,7 @@
             "answers": [
                 "Paris",
                 "Warsaw",
-                "Вінниця",
+                "Lviv",
                 "Ankara"
             ],
             "correctIndex": 0
@@ -131,7 +131,7 @@
             "correctIndex": 2
         },
         {
-            "question": "When Stepan Bandrea was born?",
+            "question": "When Stepan Bandera was born?",
             "answers": [
                 "January 1, 1909",
                 "February 15, 1921",
