@@ -14,7 +14,7 @@ export const QuizContainer = () => {
     const count = useSelector((state) => state.rootSlice.count)
     const analytic = useSelector((state) => state.rootSlice.analytic)
 
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [showModal, setShowModal] = useState(false)
     const [tempCount, setTempCount] = useState(0)
     const dispatch = useDispatch()
@@ -54,39 +54,28 @@ export const QuizContainer = () => {
     }
 
     function finishQuiz() {
-        if (!loading) {
-            return (
-                <SwitchTransition>
-                    <CSSTransition
-                        key={loading}
-                        timeout={500}
-                        classNames="fade"
-                        unmountOnExit
-                    >
+        return (<SwitchTransition>
+            <CSSTransition
+                key={new Date()}
+                timeout={500}
+                classNames="fade"
+                unmountOnExit
+            >
+                <>
+                    {loading ?
+                        <Loader textRequired={true} text={'Processing the result, please wait'} />
+                        :
                         <FinishScreen />
-                    </CSSTransition>
-                </SwitchTransition>
-            )
-        }
-        return (
-
-            <SwitchTransition>
-                <CSSTransition
-                    key={loading}
-                    timeout={500}
-                    classNames="fade"
-                    unmountOnExit
-                >
-                    <Loader textRequired={true} text={'Processing the result, please wait'} />
-                </CSSTransition>
-            </SwitchTransition>
-
-        )
+                    }
+                </>
+            </CSSTransition>
+        </SwitchTransition>)
     }
+
     function renderQuiz() {
         return (
             <>
-            <div className="progress-line" style={{width:tempCount * (100 / quizList.length) + '%'}}></div>
+                <div className="progress-line" style={{ width: tempCount * (100 / quizList.length) + '%' }}></div>
                 <SwitchTransition>
                     <CSSTransition
                         key={count}
