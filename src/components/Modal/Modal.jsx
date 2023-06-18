@@ -21,7 +21,6 @@ export const Modal = ({ text, onConfirm, onCancel, buttonRequired }) => {
                          Cancel   
                         </Button>}
                 </div>
-
             </div>
         </div>
     )

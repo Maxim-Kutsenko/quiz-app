@@ -2,7 +2,7 @@ import { Loader } from './components/Loader/Loader';
 import { useEffect } from 'react';
 import { QuizScreen } from './components/QuizScreen/QuizScreen';
 import { useSelector, useDispatch } from 'react-redux'
-import { startLoading, finishLoading } from './redux/rootSlice'
+import { finishLoading } from './redux/rootSlice'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import './scss/index.scss';

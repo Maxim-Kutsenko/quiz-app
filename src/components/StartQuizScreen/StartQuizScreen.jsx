@@ -9,9 +9,9 @@ import './startQuizScreen.scss'
 
 export const StartQuizScreen = () => {
   const dispatch = useDispatch()
-  const readyToStart = useSelector((state) => state.rootSlice.readyToStart)
+  const quizAmount = useSelector((state) => state.rootSlice.quizAmount)
   const [showModal, setShowModal] = useState(false)
-  
+
   function changeHandler(event) {
     dispatch(setQuizAmount(+event.target.value))
   }
@@ -19,7 +19,7 @@ export const StartQuizScreen = () => {
   function countHandler() {
     let clickCount = 0
     return function () {
-      if (readyToStart) {
+      if (quizAmount > 0) {
         dispatch(startQuiz())
       } else {
         clickCount++
@@ -48,11 +48,11 @@ export const StartQuizScreen = () => {
         </select>
       </div>
       <Button
-        className={`btn btn--center ${!readyToStart ? 'btn--disabled' : ''}`}
+        className={`btn btn--center ${quizAmount === 0 ? 'btn--disabled' : ''}`}
         onClick={clickHandler}
-        >
-          Get started
-        </Button>
+      >
+        Get started
+      </Button>
       <CSSTransition
         in={showModal}
         classNames="fade"
