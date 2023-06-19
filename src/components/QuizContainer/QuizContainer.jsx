@@ -89,7 +89,7 @@ export const QuizContainer = () => {
                                 {quizList[count]?.answers.map((item, index) =>
                                     <Button
                                         className={`btn ${quizList[count].activeId === index ? 'active' : ''}`}
-                                        id={index}
+
                                         key={index}
                                         onClick={() => analyticHandler(index)}
                                         quizNumber={true}
@@ -123,6 +123,7 @@ export const QuizContainer = () => {
                                 </div>
 
                             </div>
+
                             <CSSTransition
                                 in={showModal}
                                 classNames="fade"
