@@ -1,0 +1,20 @@
+@import '../../scss/vars';
+.container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    text-align: center;
+  
+    @media(max-width: $middleScreen) {
+      max-width: 960px;
+    }
+  
+    @media(max-width: $phoneMiddleScreen) {
+      padding: 0 20px;
+      max-width: none;
+    }
+  
+    @media(max-width:$phoneScreen) {
+      padding: 0 10px;
+    }
+  }

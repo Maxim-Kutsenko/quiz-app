@@ -4,6 +4,7 @@ import { Button } from '../Button/Button'
 import { Title } from '../Title/Title'
 import { CSSTransition } from 'react-transition-group'
 import './finishScreen.scss'
+const he = require('he')
 
 export const FinishScreen = () => {
   const answersCount = useSelector((state) => state.rootSlice.answersCount)
@@ -38,12 +39,12 @@ export const FinishScreen = () => {
               let isCorrect = item.correctIndex === item.activeId
               return (
                 <div className={`answers ${isCorrect ? 'answers--correct' : 'answers--wrong'}`} key={index}>
-                  <div>{index + 1}. {item.question}</div>
+                  <div>{index + 1}. {he.decode(item.question)}</div>
                   <div>You answered: <span>
-                    {item.answers[item.activeId]}
+                    {he.decode(item.answers[item.activeId])}
                   </span> - <span style={{ color: isCorrect ? '#1149a7' : '#ff0000' }}>{isCorrect ? 'correct' : 'wrong'}</span>
                   </div>
-                  {!isCorrect && <div >The correct answer is: <span>{item.answers[item.correctIndex]}</span></div>}
+                  {!isCorrect && <div >The correct answer is: <span>{he.decode(item.answers[item.correctIndex])}</span></div>}
                 </div>
               )
             })}

@@ -1,15 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: true,
-  quizList: [],
+  localLoading: false,
   quizStarted: false,
-  quizAmount: 0,
+  quizList: [],
   count: 0,
-  isQuizShow: true,
   analytic: [],
-  answersCount: {}
-
+  answersCount: {},
+  errorMessage: null
 }
 
 export const rootSlice = createSlice({
@@ -17,14 +15,37 @@ export const rootSlice = createSlice({
   initialState,
   reducers: {
     startLoading: (state) => {
-      state.loading = true
+      state.localLoading = true
     },
     finishLoading: (state, action) => {
-      state.loading = false
-      state.quizList = action.payload
-    },
-    startQuiz: (state) => {
+      state.localLoading = false
       state.quizStarted = true
+      state.quizList = action.payload
+      state.quizList = state.quizList.map((item, index) => {
+        const incorrectAnswers = item.incorrect_answers;
+        const correctAnswer = item.correct_answer;
+        const randomIndex = Math.floor(Math.random() * (incorrectAnswers.length + 1));
+
+        const newArray = [
+          ...incorrectAnswers.slice(0, randomIndex),
+          correctAnswer,
+          ...incorrectAnswers.slice(randomIndex)
+        ];
+        return {
+          "question": item.question,
+          "answers": newArray,
+          "correct_answer": item.correct_answer,
+          "correctIndex": newArray.indexOf(item.correct_answer)
+        }
+      })
+      state.analytic = state.quizList.map(() => ({ correct: null }))
+    },
+    finishLoadingWithError: (state, action) => {
+      state.localLoading = false
+      state.quizList = action.payload
+      state.quizStarted = true
+      state.analytic = state.quizList.map(() => ({ correct: null }))
+      state.errorMessage = 'Failed to connect to the server, using local quiz'
     },
     updateCount: (state, action) => {
       const amount = action.payload;
@@ -40,12 +61,6 @@ export const rootSlice = createSlice({
     },
     setActiveId: (state, action) => {
       state.analytic[state.count].activeId = action.payload
-    },
-    setQuizAmount: (state, action) => {
-      state.quizAmount = action.payload
-      state.quizList = state.quizList.sort(() => Math.random() - 0.5).slice(0, state.quizAmount)
-      state.analytic = state.quizList.map(() => ({ correct: null }))
-      state.readyToStart = true
     },
     setAnswersCount: (state, action) => {
       state.answersCount = action.payload.reduce((accum, elem) => {
@@ -67,15 +82,13 @@ export const rootSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   finishLoading,
-  startQuiz,
   incrementCount,
   updateCount,
   startLoading,
   decrementCount,
-  setQuizAmount,
   setAnalytic,
   setAnswersCount,
-  
+  finishLoadingWithError,
 } = rootSlice.actions
 
 export default rootSlice.reducer

@@ -5,18 +5,21 @@ import { FinishScreen } from '../FinishSceen/FinishScreen';
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button'
+import { Container } from '../Container/Container'
 import { Modal } from '../Modal/Modal'
 import { Title } from '../Title/Title'
 import './quizContainer.scss'
-
+const he = require('he')
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
     const analytic = useSelector((state) => state.rootSlice.analytic)
+    const errorMessage = useSelector((state) => state.rootSlice.errorMessage)
 
     const [loading, setLoading] = useState(true)
     const [showModal, setShowModal] = useState(false)
-    const [tempCount, setTempCount] = useState(0)
+
+    const [progressCount, setProgressCount] = useState(0)
     const dispatch = useDispatch()
 
     useLayoutEffect(() => {
@@ -37,8 +40,8 @@ export const QuizContainer = () => {
         } else {
             dispatch(updateCount(1))
         }
-        if (count === tempCount && count !== quizList.length - 1) {
-            setTempCount(prev => prev + 1)
+        if (count === progressCount && count !== quizList.length - 1) {
+            setProgressCount(prev => prev + 1)
         }
     }
     function prevClickHandler() {
@@ -61,21 +64,22 @@ export const QuizContainer = () => {
                 classNames="fade"
                 unmountOnExit
             >
-                <>
+                <Container>
                     {loading ?
                         <Loader textRequired={true} text={'Processing the result, please wait'} />
                         :
                         <FinishScreen />
                     }
-                </>
+                </Container>
             </CSSTransition>
         </SwitchTransition>)
     }
 
     function renderQuiz() {
         return (
-            <>
-                <div className="progress-line" style={{ width: tempCount * (100 / quizList.length) + '%' }}></div>
+            <Container>
+                {errorMessage && <div className='error-message'>{errorMessage}</div>}
+                <div className="progress-line" style={{ width: progressCount * (100 / quizList.length) + '%' }}></div>
                 <SwitchTransition>
                     <CSSTransition
                         key={count}
@@ -84,7 +88,7 @@ export const QuizContainer = () => {
                         unmountOnExit
                     >
                         <div className="quiz-contaier">
-                            <Title>{quizList[count]?.question}</Title>
+                            <Title>{he.decode(quizList[count]?.question) }</Title>
                             <div className="button-wrap">
                                 {quizList[count]?.answers.map((item, index) =>
                                     <Button
@@ -92,10 +96,9 @@ export const QuizContainer = () => {
 
                                         key={index}
                                         onClick={() => analyticHandler(index)}
-                                        quizNumber={true}
                                     >
                                         <div className="quiz-number">{index + 1}.</div>
-                                        {item}
+                                        {he.decode(item)}
                                     </Button>
                                 )}
                                 <div className="arrow-wrap">
@@ -140,7 +143,7 @@ export const QuizContainer = () => {
                         </div>
                     </CSSTransition>
                 </SwitchTransition>
-            </>
+            </Container>
         )
     }
 
