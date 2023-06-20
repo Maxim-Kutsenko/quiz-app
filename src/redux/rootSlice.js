@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   localLoading: false,
   quizStarted: false,
@@ -6,7 +7,7 @@ const initialState = {
   count: 0,
   analytic: [],
   answersCount: {},
-  errorMessage:null
+  errorMessage: null
 }
 
 export const rootSlice = createSlice({

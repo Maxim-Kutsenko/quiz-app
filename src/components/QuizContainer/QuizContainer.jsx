@@ -9,7 +9,7 @@ import { Container } from '../Container/Container'
 import { Modal } from '../Modal/Modal'
 import { Title } from '../Title/Title'
 import './quizContainer.scss'
-
+const he = require('he')
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
@@ -88,7 +88,7 @@ export const QuizContainer = () => {
                         unmountOnExit
                     >
                         <div className="quiz-contaier">
-                            <Title>{quizList[count]?.question}</Title>
+                            <Title>{he.decode(quizList[count]?.question) }</Title>
                             <div className="button-wrap">
                                 {quizList[count]?.answers.map((item, index) =>
                                     <Button
@@ -98,7 +98,7 @@ export const QuizContainer = () => {
                                         onClick={() => analyticHandler(index)}
                                     >
                                         <div className="quiz-number">{index + 1}.</div>
-                                        {item}
+                                        {he.decode(item)}
                                     </Button>
                                 )}
                                 <div className="arrow-wrap">
