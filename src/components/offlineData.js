@@ -1,4 +1,4 @@
-{
+export const offlineData = {
     "questions": [
         {
             "question": "The capital of Ukraine?",

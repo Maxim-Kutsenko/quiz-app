@@ -1,61 +1,23 @@
-import { Loader } from './components/Loader/Loader';
-import { useEffect } from 'react';
-import { QuizScreen } from './components/QuizScreen/QuizScreen';
-import { useSelector, useDispatch } from 'react-redux'
-import { finishLoading } from './redux/rootSlice'
-import { CSSTransition, SwitchTransition } from 'react-transition-group'
-
+import { useSelector } from 'react-redux'
+import { StartScreen } from './components/StartScreen/StartScreen'
+import { QuizContainer } from './components/QuizContainer/QuizContainer'
+import { Loader } from './components/Loader/Loader'
 import './scss/index.scss';
 
-export function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
-
 function App() {
-  const loading = useSelector((state) => state.rootSlice.loading)
+  const localLoading = useSelector((state) => state.rootSlice.localLoading)
+  const quizStarted = useSelector((state) => state.rootSlice.quizStarted)
 
-  const dispatch = useDispatch()
-
-  async function fetchData() {
-    try {
-      const response = await fetch('./data.json', {
-        headers:
-        {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      })
-      const data = await response.json()
-      sleep(1000).then(() => {
-        dispatch(finishLoading(data.questions))
-      })
-    } catch (e) {
-      console.log(e);
-    }
+  if (localLoading) {
+    return <Loader />
   }
-  useEffect(() => {
-    fetchData()
-  }, [])
+  if (quizStarted) {
+    return <QuizContainer />
+  }
+  if (!quizStarted) {
+    return <StartScreen />
+  }
 
-  return (
-      <SwitchTransition>
-        <CSSTransition
-          key={new Date()}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
-          <div className='container'>
-            {loading ?
-              <Loader />
-              :
-              <QuizScreen />
-            }
-          </div>
-        </CSSTransition>
-      </SwitchTransition>
-  );
-  
 }
 
 export default App;

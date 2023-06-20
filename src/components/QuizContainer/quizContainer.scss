@@ -43,3 +43,8 @@
   background: $uiBackground;
   transition: width 0.5s;
 }
+.error-message {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
