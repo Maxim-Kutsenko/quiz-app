@@ -13,7 +13,6 @@ export const FinishScreen = () => {
 
   function showAnswersHandler() {
     setShowAnswers(true)
-    document.body.classList.add('finish-screen')
   }
   return (
     <>

@@ -7,7 +7,9 @@ const initialState = {
   count: 0,
   analytic: [],
   answersCount: {},
-  errorMessage: null
+  errorMessage: null,
+  isAuthorized: false || localStorage.getItem('loggined'),
+
 }
 
 export const rootSlice = createSlice({
@@ -74,6 +76,13 @@ export const rootSlice = createSlice({
         correct: 0,
         wrong: 0
       })
+    },
+    setAuthorized: (state) => {
+      state.isAuthorized = true
+    },
+    setLogout: (state) => {
+      state.isAuthorized = false
+      localStorage.removeItem('loggined')
     }
   },
 
@@ -89,6 +98,8 @@ export const {
   setAnalytic,
   setAnswersCount,
   finishLoadingWithError,
+  setAuthorized,
+  setLogout
 } = rootSlice.actions
 
 export default rootSlice.reducer

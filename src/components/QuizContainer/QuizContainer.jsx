@@ -93,7 +93,7 @@ export const QuizContainer = () => {
                             <div className="button-wrap">
                                 {quizList[count]?.answers.map((item, index) =>
                                     <Button
-                                        className={`btn ${quizList[count].activeId === index ? 'active' : ''}`}
+                                        className={`btn ${quizList[count].activeId === index ? 'btn--active' : ''}`}
 
                                         key={index}
                                         onClick={() => analyticHandler(index)}

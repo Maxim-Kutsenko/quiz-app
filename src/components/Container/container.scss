@@ -4,17 +4,17 @@
     max-width: 1170px;
     margin: 0 auto;
     text-align: center;
-  
+    padding: 50px 0;
     @media(max-width: $middleScreen) {
       max-width: 960px;
     }
   
     @media(max-width: $phoneMiddleScreen) {
-      padding: 0 20px;
+      padding: 50px 20px;
       max-width: none;
     }
   
     @media(max-width:$phoneScreen) {
-      padding: 0 10px;
+      padding: 50px 10px;
     }
   }

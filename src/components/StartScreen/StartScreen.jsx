@@ -4,7 +4,7 @@ import { Modal } from '../Modal/Modal'
 import { Title } from '../Title/Title'
 import { Container } from '../Container/Container'
 import { useDispatch } from 'react-redux'
-import { finishLoading, startLoading, finishLoadingWithError } from '../../redux/rootSlice'
+import { finishLoading, startLoading, finishLoadingWithError, setLogout } from '../../redux/rootSlice'
 import { offlineData } from '../offlineData'
 import { CSSTransition } from 'react-transition-group'
 import './startScreen.scss'
@@ -70,9 +70,13 @@ export const StartScreen = () => {
       }
     }
   }
+  function logoutHandler() {
+    dispatch(setLogout())
+  }
   const clickHandler = countHandler()
   return (
     <Container>
+      <Button className={'btn btn--modal btn--center'} onClick={logoutHandler}>Logout</Button>
       <Title>Are you ready to start the quiz?</Title>
       <div className='title-wrap'>
         <select name="category-select"
