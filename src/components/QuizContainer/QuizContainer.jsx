@@ -10,6 +10,7 @@ import { Modal } from '../Modal/Modal'
 import { Title } from '../Title/Title'
 import './quizContainer.scss'
 const he = require('he')
+
 export const QuizContainer = () => {
     const quizList = useSelector((state) => state.rootSlice.quizList)
     const count = useSelector((state) => state.rootSlice.count)
