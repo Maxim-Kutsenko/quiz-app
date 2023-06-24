@@ -1,10 +1,9 @@
 @import '../../scss/vars.scss';
+@import '../../scss/mixin.scss';
 
 .button-wrap {
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flexItem(flex-start, center, column);
 }
 
 .active {
@@ -13,14 +12,10 @@
 }
 
 .arrow-wrap {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  display: flex;
+  @include flexItem(space-between, center);
   width: 50%;
   margin: 0 auto;
-  justify-content: space-between;
-  align-items: center;
+
 
   @media(max-width:$tableScreen) {
     width: 80%;
@@ -43,6 +38,7 @@
   background: $uiBackground;
   transition: width 0.5s;
 }
+
 .error-message {
   position: absolute;
   top: 15px;

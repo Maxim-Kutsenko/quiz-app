@@ -5,7 +5,7 @@ import { Title } from '../Title/Title'
 import { Container } from '../Container/Container'
 import { useDispatch } from 'react-redux'
 import { finishLoading, startLoading, finishLoadingWithError, setLogout } from '../../redux/rootSlice'
-import { offlineData } from '../offlineData'
+import { offlineData } from './offlineData'
 import { CSSTransition } from 'react-transition-group'
 import './startScreen.scss'
 

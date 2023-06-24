@@ -1,8 +1,7 @@
+@import '../../scss/mixin.scss';
+
 .title-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    flex-direction: column;
-  }
+  @include flexItem(center, center, column);
+  gap: 20px;
+  margin-bottom: 20px;
+}

@@ -1,11 +1,7 @@
 @import '../../scss/vars.scss';
-
+@import '../../scss/mixin.scss';
 .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    @include flexItem(center, center, column);
     &__wrap {
         margin-bottom: 20px;
     }
@@ -56,8 +52,7 @@
         padding-bottom: 0;
     }
     &__wrap {
-        display: flex;
-        justify-content: center;
+        @include flexItem(center);
         gap: 20px;
     }
 
