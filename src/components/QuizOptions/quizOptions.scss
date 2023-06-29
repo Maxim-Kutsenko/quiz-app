@@ -1,0 +1,16 @@
+@import '../../scss/mixin.scss';
+@import '../../scss/vars.scss';
+
+.quiz-options {
+    @include flexItem(center, center, center);
+    gap: 10px;
+    margin-bottom: 20px;
+    &__item {
+      border: 1px solid;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    @media(max-width:$phoneMiddleScreen) {
+      flex-direction: column  ;
+    }
+  }

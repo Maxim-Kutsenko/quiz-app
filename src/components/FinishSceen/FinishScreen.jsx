@@ -4,6 +4,7 @@ import { Button } from '../Button/Button'
 import { Title } from '../Title/Title'
 import { CSSTransition } from 'react-transition-group'
 import './finishScreen.scss'
+import { QuizOptions } from '../QuizOptions/QuizOptions'
 const he = require('he')
 
 export const FinishScreen = () => {
@@ -16,6 +17,7 @@ export const FinishScreen = () => {
   }
   return (
     <>
+    <QuizOptions/>
       {!showAnswers &&
         <div>
           <Title>Quiz completed!</Title>

@@ -8,6 +8,7 @@ import { Button } from '../Button/Button'
 import { Container } from '../Container/Container'
 import { Modal } from '../Modal/Modal'
 import { Title } from '../Title/Title'
+import { QuizOptions } from '../QuizOptions/QuizOptions';
 import './quizContainer.scss'
 const he = require('he')
 
@@ -89,7 +90,8 @@ export const QuizContainer = () => {
                         unmountOnExit
                     >
                         <div className="quiz-contaier">
-                            <Title>{he.decode(quizList[count]?.question) }</Title>
+                            <QuizOptions />
+                            <Title>{he.decode(quizList[count]?.question)}</Title>
                             <div className="button-wrap">
                                 {quizList[count]?.answers.map((item, index) =>
                                     <Button

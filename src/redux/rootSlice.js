@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   localLoading: false,
   quizStarted: false,
+  quizOptions: {},
   quizList: [],
   count: 0,
   analytic: [],
@@ -41,6 +42,9 @@ export const rootSlice = createSlice({
         }
       })
       state.analytic = state.quizList.map(() => ({ correct: null }))
+    },
+    setQuizOptions: (state, action) => {
+      state.quizOptions = action.payload;
     },
     finishLoadingWithError: (state, action) => {
       state.localLoading = false
@@ -95,6 +99,7 @@ export const {
   updateCount,
   startLoading,
   decrementCount,
+  setQuizOptions,
   setAnalytic,
   setAnswersCount,
   finishLoadingWithError,
